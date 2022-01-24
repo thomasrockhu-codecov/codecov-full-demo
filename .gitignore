@@ -1,3 +1,4 @@
 *.py[oc]
 __pycache__
 .coverage
+.pytest_cache/
