@@ -1,6 +1,15 @@
 name: API workflow
 
-on: [push, pull_request, pull_request_target]
+on:
+  push:
+    files:
+      - 'web/**'
+  pull_request:
+    files:
+      - 'web/**'
+  pull_request_target:
+    files:
+      - 'web/**'
 
 jobs:
   build:
