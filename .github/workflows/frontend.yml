@@ -1,4 +1,4 @@
-name: API workflow
+name: Frontend workflow
 
 on:
   push:
