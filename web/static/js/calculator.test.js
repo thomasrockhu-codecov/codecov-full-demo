@@ -49,10 +49,5 @@ describe('Calculator test suite', () => {
     expect(calculator.currentOperand).toBe('34');
     expect(calculator.operation).toBe('+');
     expect(calculator.previousOperand).toBe('12');
-
-    calculator.chooseOperation('-');
-    expect(calculator.currentOperand).toBe('34');
-    expect(calculator.operation).toBe('+');
-    expect(calculator.previousOperand).toBe('12');
   })
 })
