@@ -2,13 +2,13 @@ name: Frontend workflow
 
 on:
   push:
-    files:
+    paths:
       - 'web/**'
   pull_request:
-    files:
+    paths:
       - 'web/**'
   pull_request_target:
-    files:
+    paths:
       - 'web/**'
 
 jobs:
