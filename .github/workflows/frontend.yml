@@ -14,6 +14,6 @@ jobs:
     - name: Install requirements
       run: npm install
     - name: Run tests and collect coverage
-      run: npm test
+      run: npm run test
     - name: Upload coverage reports to Codecov with GitHub Action
       uses: codecov/codecov-action@v2
