@@ -4,12 +4,6 @@ on:
   push:
     paths:
       - 'web/**'
-  pull_request:
-    paths:
-      - 'web/**'
-  pull_request_target:
-    paths:
-      - 'web/**'
 
 jobs:
   build:
