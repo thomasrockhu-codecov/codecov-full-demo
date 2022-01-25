@@ -6,6 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Test JS frontend
+    defaults:
+      run:
+        working-directory: ./web
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v2
