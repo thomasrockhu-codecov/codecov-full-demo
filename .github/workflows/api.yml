@@ -2,13 +2,7 @@ name: API workflow
 
 on:
   push:
-    files:
-      - 'api/**'
-  pull_request:
-    files:
-      - 'api/**'
-  pull_request_target:
-    files:
+    paths:
       - 'api/**'
 
 jobs:
