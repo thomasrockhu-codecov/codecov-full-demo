@@ -31,7 +31,7 @@ describe('Calculator test suite', () => {
     calculator.delete();
     expect(calculator.currentOperand).toBe('1');
   })
-  /*
+
   test('test operation', () => {
     calculator = new Calculator();
     calculator.chooseOperation('+');
@@ -50,5 +50,4 @@ describe('Calculator test suite', () => {
     expect(calculator.operation).toBe('+');
     expect(calculator.previousOperand).toBe('12');
   })
-  */
 })
