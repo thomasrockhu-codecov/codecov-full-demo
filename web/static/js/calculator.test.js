@@ -1,8 +1,8 @@
-const Calculator = require('./calculator');
+const calc = require('./calculator');
 
 describe('Calculator test suite', () => {
   test('calculator clears', () => {
-    calculator = new Calculator();
+    const calculator = new calc.Calculator();
     calculator.clear();
 
     expect(calculator.currentOperand).toBe('');
@@ -12,7 +12,7 @@ describe('Calculator test suite', () => {
   })
 
   test('calculator can input numbers', () => {
-    calculator = new Calculator();
+    const calculator = new calc.Calculator();
     calculator.appendNumber(1);
     expect(calculator.currentOperand).toBe('1');
 
@@ -21,7 +21,7 @@ describe('Calculator test suite', () => {
   })
 
   test('calculator can deletes', () => {
-    calculator = new Calculator();
+    const calculator = new calc.Calculator();
     calculator.appendNumber(1);
     expect(calculator.currentOperand).toBe('1');
 
@@ -33,7 +33,7 @@ describe('Calculator test suite', () => {
   })
 
   test('test operation', () => {
-    calculator = new Calculator();
+    const calculator = new calc.Calculator();
     calculator.chooseOperation('+');
     expect(calculator.operation).toBeUndefined();
 

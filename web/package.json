@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "jest --collectCoverage"
+    "test": "jest --collectCoverage",
+    "build": "babel --plugins @babel/plugin-transform-modules-commonjs script.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
     "express": "^4.17.2"
   },
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
     "jest": "^27.4.7"
   }
 }
