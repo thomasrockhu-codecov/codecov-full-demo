@@ -1,4 +1,4 @@
-class Calculator {
+export default class Calculator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement
     this.currentOperandTextElement = currentOperandTextElement
@@ -114,5 +114,3 @@ class Calculator {
     }
   }
 }
-
-module.exports = Calculator;

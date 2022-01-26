@@ -1,4 +1,4 @@
-const Calculator = require('./calculator');
+import Calculator from './calculator.js';
 
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation]')
