@@ -26,7 +26,6 @@ The project is set up to show off multiple features of Codecov, including mergin
 ### Acknowledgements
 A significant portion of the `web/` folder derives from [this repository](https://github.com/Nomzy-kush/CalculatorJS-Section).
 
-
 ## Introduction
 
 Let’s learn by example.
@@ -44,22 +43,22 @@ To start, let’s set up the demo repository.
 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) the [demo repository](https://github.com/codecov/codecov-demo) from GitHub. It is strongly recommended that you fork the repository to your personal GitHub account.
 2. [Clone](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository) your new repository to your local machine.
 3. After you have cloned the repository, `cd` into it by running
-```
+```bash
 cd codecov-demo
 ```
 4. Checkout the `step0` tag by running
-```
+```bash
 git checkout step0 -b step1
 ```
 Note that we are creating a branch `step1` to start writing code.
 5. `pip` install `flask` and `pytest-cov` by running
-```
+```bash
 pip install flask
 pip install pytest-cov
 ```
 Note that it is recommended that this is done in a [virtual environment](https://docs.python.org/3/library/venv.html).
 6. Save down these dependencies by running
-```
+```bash
 pip freeze --local > api/requirements.txt
 ```
 
@@ -68,8 +67,8 @@ Your repository should now look like this.
 example-demo/
 |-- .gitignore
 |-- api/
-       |-- __init__.py
-       |-- requirements.txt
+   |-- __init__.py
+   |-- requirements.txt
 ```
 
 ## Step 1: Setting and getting code coverage
@@ -95,7 +94,7 @@ class Calculator:
 We are defining a `Calculator` class that can `add`, `subtract`, `multiply`, and `divide`.
 
 Next, we are going to create a simple Flask server to run our calculator code. Create a file `app.py`
-```
+```python
 from flask import (
     Flask,
     request,
@@ -135,12 +134,12 @@ app.run(host='0.0.0.0', port=8080)
 The server accepts `POST` requests to the `/api/add`, `/api/subtract`, `/api/multiply`, and `/api/divide` endpoints. It expects to receive `JSON` values `x` and `y` as data.
 
 You can start the server by running
-```
+```bash
 python api/app.py
 ```
 in a terminal from the `root` directory. You can test if the server is running by hitting one of the above endpoints. Try it by running the command below.
 
-```
+```bash
 > curl -d '{"x": 1, "y": 2}' -H 'Content-Type: application/json' http://localhost:8080/api/add
 3.0
 ```
@@ -148,7 +147,7 @@ in a terminal from the `root` directory. You can test if the server is running b
 You can see that the server is adding `1` and `2` together and returning `3.0`.
 
 Let's add some tests for our calculator. Create a new directory `tests` and add a blank `__init__.py` file and a `test_calculator.py` file with the contents
-```
+```python
 from ..calculator import Calculator
 
 
@@ -182,13 +181,13 @@ def test_divide():
 ```
 
 To run our tests, enter
-```
+```bash
 pytest
 ```
 
 into a terminal. However, we are more curious about the code coverage of our `calculator` class. We can use the command
 
-```
+```bash
 pytest --cov api/
 ```
 
@@ -210,7 +209,7 @@ Notice that `api/app.py` isn’t covered, as we haven’t tested the Flask appli
 
 You can commit this code to the repository by running
 
-```
+```bash
 git add .
 git commit -m 'step1: add calculator backend and tests'
 git push origin step1
@@ -233,14 +232,14 @@ Install the Codecov [GitHub app integration](https://github.com/apps/codecov) fo
 Now that we have set up our Codecov account, let’s upload coverage reports.
 
 If you are still on the `step1` branch, pull the latest from `main` and create a new branch `step2`
-```
+```bash
 git checkout main
 git pull
 git checkout -b 'step2'
 ```
 
 Create a new file `.github/workflows/api.yml`
-```
+```yaml
 name: API workflow
 
 on: [push, pull_request]
@@ -269,7 +268,7 @@ The coverage report format is `xml`. Codecov requires that to properly parse the
 The upload step uses the [Codecov GitHub action](https://github.com/codecov/codecov-action). It is built on top of our [universal uploader](https://github.com/codecov/uploader). It is recommended to use the `action` as it automatically runs [integrity checks](https://docs.codecov.com/docs/codecov-uploader#integrity-checking-the-uploader) on the binary.
 
 Let’s commit our code and open a pull request. Run
-```
+```bash
 git add .
 git commit -m ‘step2: upload coverage reports to Codecov’
 git push origin step2
@@ -305,7 +304,7 @@ Note that we haven’t added a test for dividing by 0.
 
 Before we add the test, let’s ensure that our coverage always hits 100%. Create a new branch `step3`
 
-```
+```bash
 git checkout main
 git pull
 git checkout -b 'step3'
@@ -313,7 +312,7 @@ git checkout -b 'step3'
 
 Create a new file `codecov.yml` in the `root` directory
 
-```
+```yaml
 coverage:
   status:
     project:
@@ -324,7 +323,7 @@ coverage:
 This configuration tells Codecov to fail a status check if 100% of the codebase is not covered with tests. However, it also allows for a 1% threshold, meaning the true minimum is 99%.
 
 Commit the new file and open a pull request
-```
+```bash
 git add .
 git commit -m 'step3: add project status check target'
 git push origin step3
@@ -334,14 +333,14 @@ You will notice that after CI finishes, we have a failing status check
 Since our project still has an uncovered line, we will need to add a test to cover it before we can merge our code.
 
 At the end of `api/tests/test_calculator.py` add a test for the divide by 0 case
-```
+```python
 def test_divide_by_0():
     assert Calculator.divide(2.0, 0) == 'Cannot divide by 0'
 ```
 to the end of the file.
 
 Let’s commit our code again and see if our project is fully covered.
-```
+```bash
 git add .
 git commit -m 'step3: cover divide by 0 case'
 git push origin step3
@@ -358,11 +357,11 @@ Finally, let’s add a Codecov badge to a `README.md` file. You can copy the Mar
 
 
 Your `README.md` file will look something like
-```
+```markdown
 [![codecov](https://codecov.io/gh/{{REPOSITORY}}/branch/main/graph/badge.svg)](https://codecov.io/gh/{{REPOSITORY}})
 ```
 As before, commit the changes and merge the pull request
-```
+```bash
 git add .
 git commit -m 'step3: add Codecov badge'
 git push origin step3
@@ -375,14 +374,13 @@ You should see the badge appear on the repository screen in GitHub
 Another core feature of Codecov is our processing and merging of coverage reports. That means we take in any number of reports and aggregate them together, so you can see your coverage data in one view. Let’s see what that looks like.
 
 Next, we are going to build out a frontend for our calculator app. We are going to be adding a few files to the `web` directory. You can make it by running
-```
+```bash
 mkdir web
 ```
 from the root directory.
 
 `web/index.html`
-
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -422,7 +420,7 @@ from the root directory.
 ```
 
 `web/package.json`
-```
+```json
 {
   "name": "web",
   "version": "1.0.0",
@@ -445,6 +443,8 @@ from the root directory.
 }
 ```
 
+`web/server.js`
+```javascript
 `const axios = require('axios')
 const express = require("express");
 const path = require("path");
@@ -475,7 +475,7 @@ app.listen(process.env.PORT || 3000, () => console.log("Server running..."));
 ```
 
 `web/static/css/calculator.css`
-```
+```css
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -538,7 +538,7 @@ body {
 ```
 
 `web/static/js/calculator.js`
-```
+```javascript
 export class Calculator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement
@@ -658,7 +658,7 @@ export class Calculator {
 ```
 
 `web/static/js/calculatorView.js`
-```
+```javascript
 import { Calculator } from './calculator.js';
 
 const numberButtons = document.querySelectorAll('[data-number]')
