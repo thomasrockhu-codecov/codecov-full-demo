@@ -1,5 +1,6 @@
 # Codecov Example Demo
 
+
 ## Introduction
 This repository is meant to be used as an example repository for Codecov. It runs as a server-side calculator, meaning that all arithmetic functions are done by a server.
 
