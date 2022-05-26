@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     name: Test JS frontend
     defaults:
       run:
@@ -22,6 +22,6 @@ jobs:
     - name: Run tests and collect coverage
       run: npm run test
     - name: Upload coverage reports to Codecov with GitHub Action
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
       with:
         flags: frontend
